@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>URBAN TEXTURE 城市皮肤</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Helvetica, Arial, "PingFang SC", sans-serif;
+}
+
+body{
+  background:#000;
+  overflow:hidden;
+  color:#fff;
+}
+
+/* ================= NAV ================= */
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 40px;
+  display:flex;
+  justify-content:space-between;
+  z-index:1000;
+  font-size:12px;
+  mix-blend-mode:difference;
+}
+
+.nav span{
+  margin-left:20px;
+  cursor:pointer;
+  opacity:0.6;
+}
+.nav span:hover{opacity:1;}
+
+/* ================= 外层横向 ================= */
+.container{
+  width:500vw;
+  height:100vh;
+  display:flex;
+  transition:1s ease;
+}
+
+.page{
+  width:100vw;
+  height:100vh;
+}
+
+/* ================= HOME ================= */
+.home{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.home h1{
+  font-size:80px;
+  font-weight:200;
+  letter-spacing:8px;
+}
+
+.home p{
+  margin-top:20px;
+  opacity:0.6;
+}
+
+/* ================= 城市页 ================= */
+.city{
+  height:100vh;
+  overflow-y:auto;
+  padding:80px 60px;
+}
+
+/* 标题 */
+.header h2{
+  font-size:40px;
+  font-weight:200;
+  letter-spacing:4px;
+}
+
+.header p{
+  margin-top:10px;
+  opacity:0.6;
+}
+
+/* ================= 卡片 ================= */
+.group{
+  margin-top:60px;
+}
+
+/* 卡片结构 */
+.card{
+  display:flex;
+  gap:30px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,0.08);
+  margin-bottom:30px;
+}
+
+/* 左信息 */
+.card-left{
+  width:35%;
+}
+
+.card-left h3{
+  font-size:20px;
+  font-weight:300;
+  margin-bottom:10px;
+}
+
+.card-left .author{
+  font-size:12px;
+  opacity:0.5;
+  margin-bottom:15px;
+}
+
+.card-left .desc{
+  font-size:13px;
+  line-height:1.6;
+  opacity:0.7;
+}
+
+/* 右宫格 */
+.grid{
+  width:50%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.grid img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  cursor:pointer;
+  filter:grayscale(100%);
+  transition:0.3s;
+}
+
+.grid img:hover{
+  filter:grayscale(0%);
+  transform:scale(1.02);
+}
+
+/* ================= 放大层 ================= */
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.lightbox img{
+  max-width:85%;
+  max-height:85%;
+}
+
+/* ================= dots（保留城市内滑动） ================= */
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div>URBAN TEXTURE / 城市皮肤</div>
+  <div>
+    <span onclick="go(0)">首页</span>
+    <span onclick="go(1)">北京</span>
+    <span onclick="go(2)">上海</span>
+    <span onclick="go(3)">广州</span>
+    <span onclick="go(4)">嘉峪关</span>
+  </div>
+</div>
+
+<div class="container" id="container">
+
+<!-- ================= HOME ================= -->
+<section class="page home">
+  <h1>URBAN TEXTURE</h1>
+  <p>Urban fabric is the poetic texture written by time and nature upon the city.</p>
+</section>
+
+<!-- ================= 北京 ================= -->
+<section class="page city">
+
+<div class="header">
+  <h2>北京</h2>
+  <p>黑白对比 / 历史压缩</p>
+</div>
+
+<!-- ===== CARD 1 ===== -->
+<div class="card">
+
+  <div class="card-left">
+    <h3>《杨树1》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      以纯粹黑白影调定格杨树断枝的创口切面，褪去色彩的干扰，把木质肌理、皲裂树皮、断裂截面的粗糙纹路完整呈现。断裂是风雨的外力痕迹，裸露的伤口不是衰败的证明，而是树木生长最真实的印记。
+    </div>
+    <div class="author">地址：北京市海淀区中关村大街</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YSyang/YSyang001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YSyang/YSyang002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YSyang/YSyang003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YSyang/YSyang004.jpg" onclick="openImg(this)">
+  </div>
+
+</div>
+
+<!-- ===== CARD 2 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《杨树2》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      镜头聚焦北京乡土毛白杨的断枝伤口，极简黑白剥离都市喧嚣，放大创面的肌理质感。这些伤口，或是狂风摧折，或是自然修枝，在日复一日的生长中慢慢结痂固化。
+    </div>
+    <div class="author">地址：北京市海淀区中关村大街</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YSliu/YSliu001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YSliu/YSliu002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YSliu/YSliu003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YSliu/YSliu004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 3 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《砖墙》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      长城脚下，青砖承岁月，红砖藏烟火，一砖一瓦，皆是厚重的历史底蕴。
+    </div>
+    <div class="author">地址：北京市延庆区石峡村</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YQqiang/YQqiang001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQqiang/YQqiang002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQqiang/YQqiang003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQqiang/YQqiang004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 4 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《木》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      取景柳沟民宿，收录胡椒木、杂树树皮与风化旧木的原生肌理，斑驳木纹藏尽时光，一木一皮，诉说长城脚下京郊古村的烟火古韵。
+    </div>
+    <div class="author">地址：北京市延庆区柳沟民俗村</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YQmu/YQmu001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQmu/YQmu002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQmu/YQmu003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQmu/YQmu004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 5 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《石墙》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      本组取材长城脚下石峡村民宿原生石墙，就地山野毛石垒砌而成，石块凹凸粗粝，缝隙肌理自然古朴。粗石依山而筑，古墙背靠长城，质朴石纹承载古村岁月，尽显边塞山村独有的厚重历史底蕴。
+    </div>
+    <div class="author">地址：北京市延庆区石峡村</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YQguqiang/YQguqiang001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQguqiang/YQguqiang002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQguqiang/YQguqiang003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQguqiang/YQguqiang004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 6 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《土墙》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      本组取材延庆柳沟古夯土城墙，原生黄土层层夯筑而成，夯层纹理清晰质朴，墙面历经风雨侵蚀斑驳自然。土墙扎根长城脚下，粗粝土痕镌刻岁月，尽显京郊古堡古朴厚重的乡土历史气息。
+    </div>
+    <div class="author">地址：北京市延庆区柳沟民俗村</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YQchangcheng/YQchangcheng001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQchangcheng/YQchangcheng002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQchangcheng/YQchangcheng003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQchangcheng/YQchangcheng004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 7 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《表皮》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      本组取材于石峡村，收录民俗红鼓旧漆面、木板残漆、鼓面牛皮肌理，搭配剥落的水泥墙皮。漆面褪色斑驳，牛皮肌理紧实，墙皮层层开裂脱落，器物与村落墙体历经时光磨损，尽显长城古村独有的民俗韵味与岁月沧桑。
+    </div>
+    <div class="author">地址：北京市延庆区石峡村</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/YQbiaopi/YQbiaopi001.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQbiaopi/YQbiaopi002.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQbiaopi/YQbiaopi003.jpg" onclick="openImg(this)">
+    <img src="images-lac/YQbiaopi/YQbiaopi004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 8 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《工厂旧墙》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      记录经雨水长期侵蚀的墙面肌理。雨水冲刷留下深浅水渍、斑驳霉痕与墙面斑驳剥落的痕迹，工业老墙在风雨浸润下自带沧桑质感，融合工业旧址的复古氛围，尽显时光与自然侵蚀带来的独特艺术肌理。
+    </div>
+    <div class="author">地址：北京市朝阳区酒仙桥路 4 号，大山子艺术区</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/798qiang/798qiang001.jpg" onclick="openImg(this)">
+    <img src="images-lac/798qiang/798qiang002.jpg" onclick="openImg(this)">
+    <img src="images-lac/798qiang/798qiang003.jpg" onclick="openImg(this)">
+    <img src="images-lac/798qiang/798qiang004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 9 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《工厂》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      本组取景 798 旧厂区，聚焦老式铸铁井盖与老旧厂房墙体。金属井盖锈蚀斑驳、纹路厚重，墙面风化老旧，工业构件与墙体相融，留存老厂房原始的工业肌理，尽显旧工业场地的岁月沧桑。
+    </div>
+    <div class="author">地址：北京市朝阳区酒仙桥路 4 号，大山子艺术区</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/798gc/798gc001.jpg" onclick="openImg(this)">
+    <img src="images-lac/798gc/798gc002.jpg" onclick="openImg(this)">
+    <img src="images-lac/798gc/798gc003.jpg" onclick="openImg(this)">
+    <img src="images-lac/798gc/798gc004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 10 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>《厂区径痕》</h3>
+    <div class="author">摄影师：LvAchang</div>
+    <div class="desc">
+      石板久经踩踏磨出温润纹路，木板风化老旧，柏油路面斑驳沧桑，瓦片铺地别致复古，多样路面承载老厂区工业岁月，尽显旧厂房独有的时光质感。
+    </div>
+    <div class="author">地址：北京市朝阳区酒仙桥路 4 号，大山子艺术区</div>
+  </div>
+
+  <div class="grid">
+    <img src="images-lac/798di/798di001.jpg" onclick="openImg(this)">
+    <img src="images-lac/798di/798di002.jpg" onclick="openImg(this)">
+    <img src="images-lac/798di/798di003.jpg" onclick="openImg(this)">
+    <img src="images-lac/798di/798di004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+</section>
+
+<!-- ================= 上海 ================= -->
+<section class="page city">
+
+<div class="header">
+  <h2>上海</h2>
+  <p>沪上碎影 / 城脉红魂 / 外滩图景</p>
+</div>
+
+<!-- ===== CARD 1 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>沪上碎影</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这是我2026年6月4日去上海拍摄的照片，大部分是武康路和湖南路附近。魔都夜色里的梧桐叶被路灯勾出透亮金边，在夜幕下舒展柔软轮廓，这是我抬头便撞见的诗意；印刻着时光质感的老式电话亭静立在围墙边，这在上海似乎并不算罕见，我一路走过见了许多外地游客借电话亭作背景装饰拍照打卡；武康大楼下车水马龙的繁华路口，夜归人群在路灯下驻足等候，车流划过夜色，暖光漫上街道，鲜活的人间气扑面而来；日间清浅水流漫过鹅卵石和静卧水底的落叶，波纹揉碎斑斓的天光。这些自然的角落，静谧边角与喧嚣街巷交织出上海独有的呼吸感。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/SH/SH001.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH002.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH003.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH008.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 2 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>城脉红魂</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像的拍摄点位于上海市中国共产党第一次全国代表大会会址馆里和自忠路，我以多元视角铺展上海的红色脉络，串联跨越百年的红色根脉与时代回响。群雕定格了百年前先辈围坐议事的瞬间，沉静的塑像肌理里藏着改写时代的思想锋芒；城市沙盘以俯瞰视角展现街巷，红色标注醒目地呈现各处革命旧址，红色火种在城市空间里的传播与发展轨迹被清晰的囊括在一方相片里；留言卡是参观者的真挚寄语，是最鲜活温热的情感延续；斑驳皴裂的树皮藏着岁月的沉淀，它们作为无声的见证者，默默陪伴上海走过风雨征程。从历史现场到当代发展，这四张照片共同渲染了上海厚重的城市底色。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/SH/SH005.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH006.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH007.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 3 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>外滩图景</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像拍摄于外滩，我以江与城的双重视角，勾勒上海外滩图景的肌理。晴空之下，陆家嘴的建筑群沿黄浦江铺展开壮阔的天际线，东方明珠挺拔矗立，玻璃幕墙和楼宇展现锐利轮廓；细碎的波光在黄浦江涟漪间闪烁；转向街巷，布满岁月痕迹的建筑沿街排布，行人往来、车流穿行，新旧建筑在同一条街道完成时空对话；尖顶与拱窗镌刻城市记忆，历史与现代共生的魅力造就了这座城市。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/SH/SH009.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH010.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH011.jpg" onclick="openImg(this)">
+    <img src="images_hzj/SH/SH012.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- 再复制5个 card -->
+
+</section>
+
+<!-- ================= 广州 ================= -->
+<section class="page city">
+
+<div class="header">
+  <h2>广州</h2>
+  <p>巷市烟火 / 新旧巷陌</p>
+</div>
+
+<!-- ===== CARD 1 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>巷市烟火</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像是我在2026年4月5日前往广州调研，拍摄于荔湾区上下九步行街。整组照片以街巷为载体，勾勒出广州最接地气的市井商业生态。临街巷口的箱包特卖店挂满各式箱包，红底白字的招牌直白醒目；青砖窄巷的入口处，粉紫霓虹招牌格外醒目，平价亲民的街巷商铺是广州巷中有铺、铺中有市的独特肌理；招牌依次排开，食物香气裹挟着人声鼎沸，热腾腾的市井烟火夹裹了整个澄海市最鲜活的人气味。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/GZ/GZ001.jpg" onclick="openImg(this)">
+    <img src="images_hzj/GZ/GZ008.jpg" onclick="openImg(this)">
+    <img src="images_hzj/GZ/GZ005.jpg" onclick="openImg(this)">
+    <img src="images_hzj/GZ/GZ004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 2 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>新旧巷陌</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像拍摄于从上下九步行街到圣心大教堂的路上，以多个街巷空间展现新旧共生的独特广州风貌。人潮熙攘的商业街，挂满各式商铺招牌的楼宇，传统与现代业态交织；狭窄的城中村巷弄一直是广东地区的特色，电线交错缠绕，人字拖和雨水的接触是最接地气的民间声音；圣心大教堂静静矗立在灰蒙天色里，更显厚重肃穆；老旧居民楼的阳台被绿植与生活物件填满，野生又充满趣味的布置是随性自在的味道。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/GZ/GZ006.jpg" onclick="openImg(this)">
+    <img src="images_hzj/GZ/GZ007.jpg" onclick="openImg(this)">
+    <img src="images_hzj/GZ/GZ002.jpg" onclick="openImg(this)">
+    <img src="images_hzj/GZ/GZ003.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+</section>
+
+<!-- ================= 嘉峪关 ================= -->
+<section class="page city">
+
+<div class="header">
+  <h2>嘉峪关</h2>
+  <p>戈壁荒漠 / 塞漠奇景 / 长风夯土</p>
+</div>
+
+<!-- ===== CARD 1 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>戈壁荒漠</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像是我在2026年6月12日前往嘉峪关市调研拍摄的。我聚焦嘉峪关戈壁的地表细节，以自然与人文两类痕迹，呈现甘肃荒野之地的独特地景。粗砂、砾石覆盖在硬土层上的荒漠是岁月打磨的作品，铺就出粗粝又富有层次的肌理；沙面被雕琢出平行舒展的波纹，这是独属于风的掌纹；倒伏的废弃旗帜，褪色布料与枯杆是被遗落的人工痕迹；深浅不一的野骆驼的蹄印，是我此行最惊喜的发现。脚下的地面，踩下去带着摩擦感，很快就有砂石钻进鞋缝里。抬眼望去，起伏的坡都寥寥。空气是干的，皮肤是烫的，人来了又走，只有天地一直在这里，安安静静。站在这里，胸腔里那些拥挤的、嘈杂的、拧巴的东西，都被留在了这片荒芜与疏离里。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/JYG/JYG001.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG002.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG010.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG007.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 2 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>塞漠奇景</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像以微观与宏观的双重视角定格嘉峪关戈壁的多元面貌。风蚀地貌横亘天际，晴空淡蓝，天地辽远，阳光洒在无尽戈壁上，尽显西北边塞的苍茫；起伏的沙丘缓缓铺展，人类文明的线条静静融入亘古荒野；细碎沙石间，一只戈壁硕螽（牛形怠蛮螽）静静蛰伏，体色与沙地近乎融为一体；戈壁地区典型的季节性干涸冲沟带来不同的感受，龟裂土和风化产物布满褶皱。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/JYG/JYG005.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG011.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG003.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG004.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+<!-- ===== CARD 3 ===== -->
+<div class="card">
+  <div class="card-left">
+    <h3>长风夯土</h3>
+    <div class="author">Hao Zhaojun</div>
+    <div class="desc">这组影像拍摄于嘉峪关关城，尽显天下第一雄关的厚重历史。飞檐翘角的城楼矗立于城垣之上，这座沉稳庄重的关楼，一砖一瓦都藏着戍守的痕迹；浓绿的林带嵌在戈壁之间，货运火车沿铁路缓缓穿行，山脉在薄雾中晕出轮廓；而凑近端详城墙，粗糙凹凸的表面布满风沙侵蚀的痕迹；双峰驼或卧或立，这些曾穿行于商道的古老生灵，如今静立在关城脚下，只是远观即可，因为近距离接触是另外的价钱（八十一圈，工作人员也相当热情）。</div>
+  </div>
+
+  <div class="grid">
+    <img src="images_hzj/JYG/JYG006.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG009.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG008.jpg" onclick="openImg(this)">
+    <img src="images_hzj/JYG/JYG012.jpg" onclick="openImg(this)">
+  </div>
+</div>
+
+</section>
+
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox" onclick="closeImg()">
+  <img id="lb">
+</div>
+
+<script>
+
+let index = 0;
+const container = document.getElementById("container");
+
+function go(i){
+  index = i;
+  container.style.transform = `translateX(-${i * 100}vw)`;
+}
+
+function openImg(img){
+  document.getElementById("lb").src = img.src;
+  document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeImg(){
+  document.getElementById("lightbox").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
